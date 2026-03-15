@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bn6b80q25bhta"]
+
+[ext_resource type="PackedScene" uid="uid://7to0ayjec8af" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="Shader" uid="uid://bcywn3ww1nk1h" path="res://shaders/screen_shader.gdshader" id="2_0xm2m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
+render_priority = 0
+shader = ExtResource("2_0xm2m")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1bvp3"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h2yge"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+
+[node name="Node3D" type="Node3D" unique_id=1035654041]
+
+[node name="Player" parent="." unique_id=201168124 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3282418, 0)
+
+[node name="ScreenShader" type="MeshInstance3D" parent="Player/CameraRotation/Camera3D" parent_id_path=PackedInt32Array(201168124, 411328566) index="0" unique_id=1380654195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.0742059, 0.18927246)
+material_override = SubResource("ShaderMaterial_h2yge")
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_1bvp3")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1383634978]
+mesh = SubResource("PlaneMesh_0xm2m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1214295276]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1853821821]
+shape = SubResource("ConcavePolygonShape3D_h2yge")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=845878133]
+environment = SubResource("Environment_ig7tw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1286552858]
+transform = Transform3D(1, 0, 0, 0, 0.392, 0.9199652, 0, -0.9199652, 0.392, 0, 6.905918, 0)
+
+[editable path="Player"]
