@@ -5,7 +5,7 @@ class_name Movement
 @export var camera_rot: Node3D
 @export var camera: Camera3D
 
-var SPEED := 60
+var SPEED := 10
 
 var camera_move_event: Vector2 = Vector2.ZERO
 

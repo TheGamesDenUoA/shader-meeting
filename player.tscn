@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://bqht26nlghsvf" path="res://movement.gd" id="1_4flbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
+height = 1.5151367
 
 [node name="Player" type="CharacterBody3D" unique_id=201168124]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=852272346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24243164, 0)
 shape = SubResource("CapsuleShape3D_4flbx")
 
 [node name="Movement" type="Node" parent="." unique_id=1947642500 node_paths=PackedStringArray("camera_rot", "camera")]

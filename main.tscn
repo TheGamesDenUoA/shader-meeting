@@ -1,23 +1,46 @@
 [gd_scene format=3 uid="uid://bn6b80q25bhta"]
 
 [ext_resource type="PackedScene" uid="uid://7to0ayjec8af" path="res://player.tscn" id="1_ig7tw"]
-[ext_resource type="Shader" uid="uid://bcywn3ww1nk1h" path="res://shaders/screen_shader.gdshader" id="2_0xm2m"]
+[ext_resource type="Shader" uid="uid://c8brjho2snwsx" path="res://shaders/screen_outline_shader.gdshader" id="2_0xm2m"]
+[ext_resource type="Shader" uid="uid://c17ltctaat80a" path="res://shaders/floor.gdshader" id="3_272bh"]
+[ext_resource type="PackedScene" uid="uid://dape4jd1f5d73" path="res://objects/chair.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dp5ncw0lo8pda" path="res://objects/table.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://c1h7kvuy8gtdg" path="res://objects/sofa.tscn" id="5_7mycd"]
+[ext_resource type="Shader" uid="uid://b5use38vyykut" path="res://shaders/the_wall.gdshader" id="6_7mycd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
 render_priority = 0
 shader = ExtResource("2_0xm2m")
+shader_parameter/outline_thickness = 0.999999977648
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/fill_color = Color(0, 0, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_1bvp3"]
 flip_faces = true
 size = Vector2(2, 2)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+render_priority = 0
+shader = ExtResource("3_272bh")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
 size = Vector2(100, 100)
+subdivide_width = 100
+subdivide_depth = 100
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h2yge"]
 data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+render_priority = 0
+shader = ExtResource("6_7mycd")
+
+[sub_resource type="QuadMesh" id="QuadMesh_lquwl"]
+size = Vector2(5, 5)
+subdivide_width = 250
+subdivide_depth = 250
 
 [node name="Node3D" type="Node3D" unique_id=1035654041]
 
@@ -26,12 +49,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3282418, 0)
 
 [node name="ScreenShader" type="MeshInstance3D" parent="Player/CameraRotation/Camera3D" parent_id_path=PackedInt32Array(201168124, 411328566) index="0" unique_id=1380654195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.0742059, 0.18927246)
+visible = false
 material_override = SubResource("ShaderMaterial_h2yge")
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_1bvp3")
 skeleton = NodePath("../../../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1383634978]
+material_override = SubResource("ShaderMaterial_5vw27")
 mesh = SubResource("PlaneMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1214295276]
@@ -44,5 +69,19 @@ environment = SubResource("Environment_ig7tw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1286552858]
 transform = Transform3D(1, 0, 0, 0, 0.392, 0.9199652, 0, -0.9199652, 0.392, 0, 6.905918, 0)
+
+[node name="chair" parent="." unique_id=578487835 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2830601, 0.014387193, -15.329221)
+
+[node name="table" parent="." unique_id=274827785 instance=ExtResource("4_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9905348, 0.008358717, -13.703265)
+
+[node name="sofa" parent="." unique_id=1551292774 instance=ExtResource("5_7mycd")]
+transform = Transform3D(-0.9982244, 0.01795701, -0.056794874, 0.011544595, 0.99372214, 0.111280106, 0.058436632, 0.11042684, -0.9921648, 0.92163754, 0.10049203, -12.1412735)
+
+[node name="TheWall" type="MeshInstance3D" parent="." unique_id=1499975627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9368734, -21.00521)
+material_override = SubResource("ShaderMaterial_272bh")
+mesh = SubResource("QuadMesh_lquwl")
 
 [editable path="Player"]

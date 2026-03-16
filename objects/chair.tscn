@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dape4jd1f5d73"]
+
+[ext_resource type="PackedScene" uid="uid://vmohwm0vs8lq" path="res://objects/chair.glb" id="1_x36a4"]
+
+[node name="chair" unique_id=578487835 instance=ExtResource("1_x36a4")]
+
+[node name="Mesh_0" parent="." index="0" unique_id=224492758]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)

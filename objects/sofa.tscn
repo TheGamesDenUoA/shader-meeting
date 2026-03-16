@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c1h7kvuy8gtdg"]
+
+[ext_resource type="PackedScene" uid="uid://c6kd4sfjgwtyf" path="res://objects/sofa.glb" id="1_xgqgf"]
+
+[node name="sofa" unique_id=1551292774 instance=ExtResource("1_xgqgf")]
+
+[node name="simple" parent="." index="0" unique_id=621222019]
+transform = Transform3D(0.009993742, 0.00033202965, 0.000121968515, 0.0003537231, -0.009380839, -0.003445975, 1.0244548e-10, 0.0034481331, -0.009386713, 0, 0, 0)

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dkrftgbip4kxm"]
+
+[ext_resource type="Shader" uid="uid://cpkn4arr2cg3j" path="res://objects/sofa_material.gdshader" id="1_i05dl"]
+[ext_resource type="Texture2D" uid="uid://ddl66h64uiywn" path="res://objects/sofa_albedo.png" id="2_10jpg"]
+[ext_resource type="Texture2D" uid="uid://dfl8apct3ckj8" path="res://objects/sofa_normals.png" id="3_bj5es"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_i05dl")
+shader_parameter/albedo_tex = ExtResource("2_10jpg")
+shader_parameter/normal_tex = ExtResource("3_bj5es")
